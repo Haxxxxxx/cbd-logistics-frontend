@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { deleteUserAccount,authStateChange, signOut } from './firebase/authservice';
+import { deleteUserAccount, authStateChange, signOut } from './firebase/authservice';
 import SignIn from './Auth/signin';
 import SignUp from './Auth/signup'; // Ensure you have created this component
 import EditProfile from './profile/editprofile';
- 
+import ProjectsDashboard from './Dashboard/dashboard'; // Import the ProjectsDashboard component
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,8 +29,6 @@ function App() {
 
   const toggleSignUp = () => setShowSignUp(!showSignUp); // Toggle between sign in and sign up
 
-
-  
   return (
     <div>
       {currentUser ? (
@@ -38,6 +36,7 @@ function App() {
           <p>Welcome, {currentUser.displayName || currentUser.email}</p>
           
           <EditProfile user={currentUser} />
+          <ProjectsDashboard user={currentUser} /> {/* Add this line to display the projects dashboard */}
           <button onClick={handleSignOut}>Sign Out</button>
         </div>
       ) : (
